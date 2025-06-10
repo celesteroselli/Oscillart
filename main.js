@@ -1,5 +1,6 @@
 const input = document.getElementById('input');
-const color_picker = document.getElementById('color');
+const color_picker1 = document.getElementById('color1');
+const color_picker2 = document.getElementById('color2');
 const vol_slider = document.getElementById('vol-slider');
 const recording_toggle = document.getElementById('record');
 
@@ -93,7 +94,11 @@ function drawWave() {
 function line() {
    y = height/2 + ((vol_slider.value/100)*40 * Math.sin(x * 2 * Math.PI * freq * (0.5*length)));
 
-   ctx.strokeStyle = color_picker.value;
+    const gradient = ctx.createLinearGradient(20, 0, 220, 0);
+        gradient.addColorStop(0, color_picker1.value);
+        gradient.addColorStop(1, color_picker2.value);
+
+   ctx.strokeStyle = gradient;
    ctx.lineTo(x, y);
    ctx.stroke();
    x = x + 1;
